@@ -18,12 +18,13 @@ using System.Windows.Shapes;
 using System.Data.Entity;
 using System.Windows.Forms;
 using MessageBox = System.Windows.MessageBox;
+using System.Drawing;
+using ListViewItem = System.Windows.Forms.ListViewItem;
+
 
 namespace MyWallet_2._0
 {
-    /// <summary>
-    /// Interaction logic for UserIncomeWindow.xaml
-    /// </summary>
+
     public partial class UserIncomeWindow : Window
     {
         public UserIncomeWindow()
@@ -59,6 +60,8 @@ namespace MyWallet_2._0
 
             string getComment = textBoxForComments.Text.Trim();
 
+            string getBill = listOfUsers.Text.ToString();
+
 
             UserIncome userIncome = new UserIncome(amountSpent, Convert.ToInt32(getCategoryId), getComment);
 
@@ -69,17 +72,20 @@ namespace MyWallet_2._0
                 DB db = new DB();
 
 
-                SQLiteCommand command = new SQLiteCommand("UPDATE Totals SET totalMoney = totalMoney + @amountSpent WHERE id = 1", db.getConnection());
+                SQLiteCommand command = new SQLiteCommand("UPDATE Totals SET totalMoney = totalMoney + @amountSpent WHERE billName = @billName", db.getConnection());
                 command.Parameters.Add("@amountSpent", DbType.Double).Value = amountSpent;
+                command.Parameters.Add("@billName", DbType.String).Value = getBill;
 
                 db.openConnection();
 
                 command.ExecuteNonQuery();
 
-                Total total = context.Totals.Where(b => b.id == 1).FirstOrDefault();
 
-                listOfUsers.Items.Clear();
-                listOfUsers.Items.Add(total);
+                int index = listOfUsers.SelectedIndex;
+                List<Total> total = context.Totals.ToList();
+                listOfUsers.ItemsSource = total;               
+                listOfUsers.SelectedIndex = index;
+
 
 
                 context.UserIncomes.Add(userIncome);
@@ -116,8 +122,8 @@ namespace MyWallet_2._0
         {
             using (ApplicationContext context = new ApplicationContext())
             {
-                Total total = context.Totals.Where(b => b.id == 1).FirstOrDefault();
-                listOfUsers.Items.Add(total);
+                List<Total> total = context.Totals.ToList();
+                listOfUsers.ItemsSource = total;
 
 
                 List<IncomeCategory> categories = context.IncomeCategories.ToList();
@@ -131,9 +137,10 @@ namespace MyWallet_2._0
                 new Sorting().SortDesc(historySpend);
 
 
-                ImageList imageList = new ImageList();
 
-                /*imageList.ImageSize = new Size(25, 25);*/
+
+
+
 
 
 
@@ -143,11 +150,6 @@ namespace MyWallet_2._0
 
 
             }
-        }
-
-        private void Button_All_Categories(object sender, RoutedEventArgs e)
-        {
-
         }
 
 
@@ -168,6 +170,11 @@ namespace MyWallet_2._0
             UserCostsWindow.Show();
             this.Hide();
         }
-
+        private void Go_To_Transfers(object sender, RoutedEventArgs e)
+        {
+            UserTransfersWindow userTransfersWindow = new UserTransfersWindow();
+            userTransfersWindow.Show();
+            Hide();
+        }
     }
 }

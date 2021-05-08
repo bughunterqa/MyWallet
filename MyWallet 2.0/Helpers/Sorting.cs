@@ -17,5 +17,12 @@ namespace MyWallet_2._0.Helpers
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listview.ItemsSource);
             view.SortDescriptions.Add(new SortDescription("CreatedAt", ListSortDirection.Descending));
         }
+
+
+        public void SortDescAmount(ListView listview)
+        {
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listview.Items);
+            view.SortDescriptions.Add(new SortDescription("Amount", ListSortDirection.Descending));
+        }
     }
 }

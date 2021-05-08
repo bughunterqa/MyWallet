@@ -51,7 +51,7 @@ namespace MyWallet_2._0
         {
             this.amountSpent = amountSpent;
             this.categoryId = categoryId;
-            CreatedAt = DateTime.UtcNow;
+            CreatedAt = DateTime.Now;
             this.comment = comment;
         }
 

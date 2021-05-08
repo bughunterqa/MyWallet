@@ -30,12 +30,11 @@
             </Border.Effect>
             <StackPanel>
                 <Grid Margin="0 0 0 20"  >
-                    <TextBlock TextAlignment="Center" Padding="370 0 0 0 " FontSize="30" FontWeight="Bold" ><Run Text="Мои расходы"/></TextBlock>
+                    <TextBlock TextAlignment="Center" Padding="370 0 0 0 "  FontSize="30" FontWeight="Bold" Opacity="0.8"  ><Run Text="Мои расходы"/></TextBlock>
                     <Button x:Name="btnExit" Content="X" HorizontalAlignment="Right" Width="50" Height="50" />
                     <Button x:Name="btnIncome" Content="Доходы"  HorizontalAlignment="Left" Width="100" Height="50" FontSize="13" Click="btnIncome_Click"/>
-                    <Button x:Name="btnCost" Content="Переводы" Margin="110 0 0 0" HorizontalAlignment="Left" Width="100" Height="50" FontSize="13"/>
-                    <Button x:Name="btnStatistics" Content="Статистика" Margin="220 0 0 0" HorizontalAlignment="Left" Width="100" Height="50" FontSize="13"/>
-                    <Button x:Name="btnAmount" Content="Счета" Margin="330 0 0 0" HorizontalAlignment="Left" Width="100" Height="50" FontSize="13"/>
+                    <Button x:Name="btnCost" Content="Переводы" Margin="110 0 0 0" HorizontalAlignment="Left" Width="100" Height="50" FontSize="13" Click="Go_To_Transfers"/>
+                    <Button x:Name="btnStatistics" Content="Статистика" Margin="220 0 0 0" HorizontalAlignment="Left" Width="100" Height="50" FontSize="13" Click="Go_to_Statistics"/>
                 </Grid>
             </StackPanel>
         </Border>
@@ -45,25 +44,27 @@
             </Border.Effect>
             <StackPanel>
                 <Grid>
-                    <Label Content="Всего: "  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Margin="110 0 0 0"/>
-                    <ListView x:Name="listOfUsers" Margin="50 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24">
-                        <ListView.ItemTemplate>
+                    <ComboBox x:Name="listOfUsers" HorizontalAlignment="Center" Width="auto"  SelectedIndex="0" FontSize="17" >
+                        <ComboBox.ItemTemplate>
                             <DataTemplate>
-                                <WrapPanel>
-                                    <TextBlock Text="{Binding TotalMoney, StringFormat=C,  ConverterCulture=uk}" FontWeight="Bold" />
-                                </WrapPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding BillName}" FontWeight="Bold"  HorizontalAlignment="Center"/>
+                                    <TextBlock Text="   "/>
+                                    <TextBlock Text="{Binding TotalMoney, StringFormat=C,  ConverterCulture=uk}"  HorizontalAlignment="Center"/>
+                                </StackPanel>
                             </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                 </Grid>
                 <Grid>
-                    <Label Content="Сумма: "  HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="13" Margin="43 0 0 0"/>
-                    <TextBox Name="textBoxForSpent" Padding="10" Margin="100 0 100 0"  TextAlignment="Center"  PreviewTextInput="textBoxForSpent_TextInput" FontWeight="Bold"   />
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Name="textBoxForSpent" Padding="10"   TextAlignment="Center" FontWeight="Bold" materialDesign:HintAssist.Hint="Введите сумму" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Grid.ColumnSpan="2"  />
                 </Grid>
-
                 <Grid>
-                    <Label Content="Комментарий: "  HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="13" Margin="0 0 0 0"/>
-                    <TextBox x:Name="textBoxForComments" Padding="10" Margin="100 0 100 0" TextAlignment="Center"/>
+                    <TextBox x:Name="textBoxForComments" Padding="10"  TextAlignment="Center" FontWeight="Bold" materialDesign:HintAssist.Hint="Введите коментарий" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 </Grid>
                 <Grid>
                     <ListView x:Name="listOfCategories" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="12"  >
@@ -76,7 +77,7 @@
                             <DataTemplate >
                                 <WrapPanel>
                                     <Image Source="{Binding Image}"/>
-                                    <TextBlock  Text="{Binding CategoryName}"  Cursor="Hand"/>
+                                    <TextBlock  Text="{Binding CategoryName}"  Cursor="Hand" />
                                 </WrapPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -119,6 +120,6 @@
                 </ListView.View>
             </ListView>
         </Border>
-        
+
     </Grid>
 </Window>

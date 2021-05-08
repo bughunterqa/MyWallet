@@ -1,0 +1,98 @@
+﻿<Window x:Class="MyWallet_2._0.StatisticCostsWindow"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyWallet_2._0"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+    
+       mc:Ignorable="d"
+        
+        Title="Мой Кошелёк" Height="450" Width="800"
+        Loaded="Window_Loaded" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen">
+
+    <Grid Background="#ffdadada">
+
+        <Border MinWidth="700" Margin="5" Background="White" VerticalAlignment="Center" Padding="20" MaxWidth="600" CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
+            </Border.Effect>
+            <StackPanel>
+                <Grid Height="55">
+                    <TextBlock Text="Статистика расходов" FontSize="22" FontWeight="Bold" Margin="0 0 0 20"/>
+                    <Button Margin="130 0 0 20" Content="Вернуться к расходам" HorizontalAlignment="Center" Click="Back_to_Costs" Style="{StaticResource MaterialDesignFlatButton}"/>
+                    <Button Margin="10 0 0 20" Content="Статистика доходов" HorizontalAlignment="Right" Click="Go_to_StatisticIncome"/>
+                </Grid>
+                <Grid>
+                    <Button x:Name="byDayButton" Margin="10 0 0 0" Content="День" HorizontalAlignment="Left"  Style="{StaticResource MaterialDesignRaisedButton}" Width="90" Click="Button_Click_By_Day"
+    materialDesign:ButtonProgressAssist.Value="-1"
+    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+    materialDesign:ButtonProgressAssist.IsIndeterminate="True" />
+                    <Button HorizontalAlignment="Left" Margin="110 0 0 0"  Style="{StaticResource MaterialDesignFlatButton}"  Width="90" Click="Button_Click_By_Month">Месяц</Button>
+                    <Button  Margin="210 0 0 0" Content="Год" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignFlatButton}"  Width="90" Click="Button_Click_By_Year"/>
+
+                    <ComboBox x:Name="comboBoxForCategories" Cursor="Hand" SelectionChanged="comboBoxForCategories_SelectionChanged" Margin="0,0,60,0" HorizontalAlignment="Right" Width="139" materialDesign:HintAssist.Hint="Выберите категорию" RenderTransformOrigin="0.489,0.44" >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding CategoryName}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </Grid>
+                <Grid Margin="0,0,0,0">
+                    <ListView x:Name="historyByDate" FontSize="12"  Width="310" HorizontalAlignment="Left" ScrollViewer.CanContentScroll="False"  ScrollViewer.VerticalScrollBarVisibility="Auto" MinHeight="250" MaxHeight="250" Margin="0,0,0,0">
+                        <ListView.View>
+                            <GridView x:Name="myGridView"  >
+                                <GridViewColumn Header="Категории" Width="160" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding CatName}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Сумма" Width="110"  >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Amount, StringFormat=C,  ConverterCulture=uk}"   />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <ListView x:Name="historyByCategory"   FontSize="12"  Width="259" HorizontalAlignment="Right" VerticalAlignment="Stretch"  ScrollViewer.CanContentScroll="False"  ScrollViewer.VerticalScrollBarVisibility="Auto" MinHeight="240" MaxHeight="250" Margin="0,-10,0,0" >
+                        <ListView.View>
+                            <GridView   >
+                                <GridViewColumn Header="Дата" Width="110" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding CreatedAt, StringFormat='dd.MM.yyyy'}" FontWeight="Bold" HorizontalAlignment="Center">
+                                                <TextBlock.ToolTip>
+                                                    <ToolTip Content="{Binding Comment}"/>
+                                                </TextBlock.ToolTip>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Сумма" Width="110"  >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding AmountSpent, StringFormat=C, ConverterCulture=uk}"   >
+                                                <TextBlock.ToolTip>
+                                                    <ToolTip Content="{Binding Comment}"/>
+                                                </TextBlock.ToolTip>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

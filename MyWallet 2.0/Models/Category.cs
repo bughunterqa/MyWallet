@@ -14,6 +14,7 @@ namespace MyWallet_2._0.Models
         private string categoryName;
 
 
+
         public string CategoryName
         {
             get { return categoryName; }

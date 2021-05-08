@@ -12,18 +12,31 @@ namespace MyWallet_2._0
 
         private double totalMoney;
 
+        private string billName;
+
         public double TotalMoney
         {
             get { return totalMoney; }
             set { totalMoney = value; }
         }
 
+        public string BillName
+        {
+            get { return billName; }
+            set { billName = value; }
+        }
+
         public Total() { }
 
-        public Total(double totalMoney)
+        public Total(double totalMoney, string billName)
         {
             this.totalMoney = totalMoney;
-
+            this.billName = billName;
         }
+        public override string ToString()
+        {
+            return billName + "";
+        }
+
     }
 }

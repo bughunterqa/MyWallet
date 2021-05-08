@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWallet 2.0", "MyWallet 2.0\MyWallet 2.0.csproj", "{3BA0F127-19F8-4422-9EE8-987982A0679A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWalletHome", "MyWallet 2.0\MyWalletHome.csproj", "{3BA0F127-19F8-4422-9EE8-987982A0679A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
