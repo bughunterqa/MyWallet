@@ -8,44 +8,104 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="Мой Кошелёк" Height="600" Width="800"
         Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+
     <Grid Background="#ffdadada">
         <Border MinWidth="400" Margin="15" Background="White" VerticalAlignment="Center" Padding="30" MaxWidth="550" CornerRadius="20">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
             </Border.Effect>
+            
             <StackPanel>
                 <Grid Margin="0 0 20 20">
                     <Button HorizontalAlignment="Left" Margin="0 0 0 0" Click="Go_To_Transfers" Style="{StaticResource MaterialDesignFlatButton}">Вернуться к переводам</Button>
                     <TextBlock Text="Ваши счета" FontSize="30" FontWeight="Bold" Margin="0 0 0 10" HorizontalAlignment="Right"/>
+                    <Button x:Name="createBtn" Click="createBtn_Click" Content="Создать" HorizontalAlignment="Center"/>
+                    <Button x:Name="backBtn" Click="backBtn_Click" Content="Отменить" HorizontalAlignment="Center" Visibility="Hidden"/>
                 </Grid>
 
-                <Grid Margin="0 0 0 0">
-                    <TextBox x:Name="textBoxForName" HorizontalAlignment="Left" Width="180" materialDesign:HintAssist.Hint="Введите название" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,0,0,20"/>
-                    <TextBox x:Name="textBoxForAmount" HorizontalAlignment="Center" Width="153" materialDesign:HintAssist.Hint="Введите сумму" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="203,0,134,20"/>
-                    <Button HorizontalAlignment="Right" Margin="0 10 0 20" Click="Create_Bill">Создать счёт</Button>
+                <Grid Margin="0 0 0 0" x:Name="gridBill" Visibility="Collapsed">
+                    <TextBox x:Name="textBoxForName"  HorizontalAlignment="Left" Width="180" materialDesign:HintAssist.Hint="Введите название" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,0,0,20"/>
+                    <TextBox x:Name="textBoxForAmount"   HorizontalAlignment="Center" Width="153" materialDesign:HintAssist.Hint="Введите сумму" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="203,0,134,20"/>
+                    <Button x:Name="testNew" HorizontalAlignment="Right" Margin="0 10 0 20" Click="Create_Bill" Style="{StaticResource MaterialDesignRaisedButton}"
+    materialDesign:ButtonProgressAssist.Value="-1"
+    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+    materialDesign:ButtonProgressAssist.IsIndeterminate="True">Создать счёт</Button>
+
                 </Grid>
+
+               
+
                 <Grid>
-                    <ListView x:Name="listOfBill" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="12" Width="490"  >
+                    <ListView x:Name="listOfBill"  VerticalAlignment="Top" FontSize="12" Width="490"  >
                         <ListView.View>
-                            <GridView x:Name="myGridView" >
-                                <GridViewColumn Header="Название счёта" Width="350" >
+                            <GridView x:Name="myGridView"  >
+                                <GridViewColumn Header="Название счёта" Width="200"  >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding BillName}" FontWeight="Bold"/>
+                                            <TextBlock Text="{Binding BillName}" FontWeight="Bold" TextAlignment="Center" Margin="30 0 0 0"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="Баланс" Width="110"  >
+                                <GridViewColumn Header="Баланс" Width="130"  >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding TotalMoney, StringFormat=C, ConverterCulture=uk}"   />
+                                            <TextBlock Text="{Binding TotalMoney, StringFormat=C, ConverterCulture=uk}" TextAlignment="Center" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
+                                <GridViewColumn Header="" Width="50">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button x:Name="editBtn" Click="editBtn_Click" Width="35" Height="35"  BorderBrush="White"  >
+                                                <Button.Style>
+                                                    <Style TargetType="{x:Type Button}">
+                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type ListBoxItem}},Path=IsMouseOver}" Value="true" >
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Button.Style>
+                                                <Image Source="images/iconfinder_pencil_3688460.png" />
+                                                <Button.ToolTip>
+                                                    <ToolTip>Редактировать счёт</ToolTip>
+                                                </Button.ToolTip>
+                                            </Button>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="" Width="50">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button x:Name="removeBtn" Click="removeBtn_Click" Width="35" Height="35"  BorderBrush="White"  >
+                                                <Button.Style>
+                                                    <Style TargetType="{x:Type Button}">
+                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type ListBoxItem}},Path=IsMouseOver}" Value="true" >
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Button.Style>
+                                                <Image Source="images/iconfinder_Cancel_1493282.png" />
+                                                <Button.ToolTip>
+                                                    <ToolTip>Удалить счёт</ToolTip>
+                                                </Button.ToolTip>
+                                            </Button>
+                                            
+                                            
+                                            
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                
                             </GridView>
                         </ListView.View>
                     </ListView>
                 </Grid>
+                
             </StackPanel>
         </Border>
     </Grid>

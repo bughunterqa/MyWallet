@@ -28,7 +28,7 @@ namespace MyWallet_2._0.Helpers
         {
             using (ApplicationContext context = new ApplicationContext())
             {
-                List<Category> categories = context.Categories.ToList();
+                List<IncomeCategory> categories = context.IncomeCategories.ToList();
                 int countCat = categories.Count + 1;
 
                 SQLiteDataReader reader = null;
@@ -36,7 +36,7 @@ namespace MyWallet_2._0.Helpers
 
                 for (int i = 1; i < countCat; i++)
                 {
-                    SQLiteCommand command = new SQLiteCommand("SELECT SUM(us.amountspent), cat.categoryName FROM UserSpends AS us INNER JOIN Categories AS cat ON us.categoryId = cat.id WHERE us.categoryId = @categoryId AND date(us.CreatedAt) = CURRENT_DATE  ", db.getConnection());
+                    SQLiteCommand command = new SQLiteCommand("SELECT SUM(us.amountSpent), cat.categoryName FROM UserIncomes AS us INNER JOIN IncomeCategories AS cat ON us.categoryId = cat.id WHERE us.categoryId = @categoryId AND date(us.CreatedAt) = CURRENT_DATE  ", db.getConnection());
                     command.Parameters.Add("@categoryId", DbType.Int32).Value = i;
 
                     db.openConnection();
@@ -60,7 +60,7 @@ namespace MyWallet_2._0.Helpers
         {
             using (ApplicationContext context = new ApplicationContext())
             {
-                List<Category> categories = context.Categories.ToList();
+                List<IncomeCategory> categories = context.IncomeCategories.ToList();
                 int countCat = categories.Count + 1;
 
                 SQLiteDataReader reader = null;
@@ -68,7 +68,7 @@ namespace MyWallet_2._0.Helpers
 
                 for (int i = 1; i < countCat; i++)
                 {
-                    SQLiteCommand command = new SQLiteCommand("SELECT SUM(us.amountspent), cat.categoryName FROM UserSpends AS us INNER JOIN Categories AS cat ON us.categoryId = cat.id WHERE us.categoryId = @categoryId AND strftime('%m',us.CreatedAt) = strftime('%m',date('now')) AND strftime('%Y',us.CreatedAt) = strftime('%Y',date('now'))  ", db.getConnection());
+                    SQLiteCommand command = new SQLiteCommand("SELECT SUM(us.amountSpent), cat.categoryName FROM UserIncomes AS us INNER JOIN IncomeCategories AS cat ON us.categoryId = cat.id WHERE us.categoryId = @categoryId AND strftime('%m',us.CreatedAt) = strftime('%m',date('now')) AND strftime('%Y',us.CreatedAt) = strftime('%Y',date('now'))  ", db.getConnection());
                     command.Parameters.Add("@categoryId", DbType.Int32).Value = i;
 
                     db.openConnection();
@@ -95,7 +95,7 @@ namespace MyWallet_2._0.Helpers
         {
             using (ApplicationContext context = new ApplicationContext())
             {
-                List<Category> categories = context.Categories.ToList();
+                List<IncomeCategory> categories = context.IncomeCategories.ToList();
                 int countCat = categories.Count + 1;
 
                 SQLiteDataReader reader = null;
@@ -103,7 +103,7 @@ namespace MyWallet_2._0.Helpers
 
                 for (int i = 1; i < countCat; i++)
                 {
-                    SQLiteCommand command = new SQLiteCommand("SELECT SUM(us.amountspent), cat.categoryName FROM UserSpends AS us INNER JOIN Categories AS cat ON us.categoryId = cat.id WHERE us.categoryId = @categoryId AND strftime('%Y',CreatedAt) = strftime('%Y',date('now'))  ", db.getConnection());
+                    SQLiteCommand command = new SQLiteCommand("SELECT SUM(us.amountSpent), cat.categoryName FROM UserIncomes AS us INNER JOIN IncomeCategories AS cat ON us.categoryId = cat.id WHERE us.categoryId = @categoryId AND strftime('%Y',CreatedAt) = strftime('%Y',date('now'))  ", db.getConnection());
                     command.Parameters.Add("@categoryId", DbType.Int32).Value = i;
 
                     db.openConnection();

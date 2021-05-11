@@ -1,0 +1,60 @@
+﻿<Window x:Class="MyWallet_2._0.AllCategoriesWindow"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyWallet_2._0"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Мой Кошелёк" Height="600" Width="800"
+        Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+    <Grid Background="#ffdadada">
+        <Border MinWidth="400" Margin="15" Background="White" VerticalAlignment="Center" Padding="30" MaxWidth="550" CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
+            </Border.Effect>
+            <StackPanel>
+                <Grid Margin="0 0 20 20">
+                    <Button HorizontalAlignment="Left" Margin="0 0 0 0" Click="Back_To_Costs" Style="{StaticResource MaterialDesignFlatButton}">Вернуться к расходам</Button>
+                    <TextBlock Text="Категории" FontSize="30" FontWeight="Bold" Margin="0 0 0 10" HorizontalAlignment="Right"/>
+                </Grid>
+                <Grid Margin="10 0 10 5">
+                    <Button x:Name="createBtn" Content="Создать категорию" Click="Add_New_Category" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignRaisedButton}"
+    materialDesign:ButtonProgressAssist.Value="-1"
+    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+    materialDesign:ButtonProgressAssist.IsIndeterminate="True"/>
+                    <Button x:Name="removeBtn" Content="Удалить категорию" Click="Remove_Category" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedButton}"
+    materialDesign:ButtonProgressAssist.Value="-1"
+    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+    materialDesign:ButtonProgressAssist.IsIndeterminate="True"/>
+                </Grid>
+
+                <Grid>
+                    <ListView x:Name="listOfCategories" HorizontalAlignment="Center"  FontSize="12" Width="490" MaxHeight="390"  VerticalAlignment="Center" >
+                        <ListView.View>
+                            <GridView x:Name="myGridView" >
+                                <GridViewColumn Header="Название категории" Width="340" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding CategoryName}" FontWeight="Bold" FontSize="14"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Иконка" Width="120"  >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <WrapPanel>
+                                                <Image Source="{Binding Image.ImagePuth}" Width="50" Height="50" HorizontalAlignment="Center"/>
+                                            </WrapPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
+    

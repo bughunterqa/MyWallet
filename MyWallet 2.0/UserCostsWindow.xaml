@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MyWallet_2._0"
        mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Мой Кошелёк" Height="450" Width="800"
+        Title="Мой Кошелёк" Height="500" Width="900"
         Loaded="Window_Loaded" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen">
 
     <Grid Background="#ffdadada">
@@ -67,24 +67,24 @@
                     <TextBox x:Name="textBoxForComments" Padding="10"  TextAlignment="Center" FontWeight="Bold" materialDesign:HintAssist.Hint="Введите коментарий" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 </Grid>
                 <Grid>
-                    <ListView x:Name="listOfCategories" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="12"  >
+                    <ListView x:Name="listOfCategories" Grid.Column="1" Margin="50 20 0 30" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="12"   MinHeight="130" MaxHeight="130" MaxWidth="600" >
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <UniformGrid Columns="5" MaxWidth="500"  />
+                                <UniformGrid Columns="5" Rows="6"  />
                             </ItemsPanelTemplate>
                         </ListView.ItemsPanel>
-                        <ListView.ItemTemplate>
-                            <DataTemplate >
-                                <WrapPanel>
-                                    <Image Source="{Binding Image}"/>
-                                    <TextBlock  Text="{Binding CategoryName}"  Cursor="Hand" />
+                        <ListView.ItemTemplate  >
+                            <DataTemplate  >
+                                <WrapPanel Width="64"  >
+                                    <Image Source="{Binding Image.ImagePuth}" Width="35" Height="35" HorizontalAlignment="Center"/>
+                                    <TextBlock  Text="{Binding CategoryName}"  Cursor="Hand" FontWeight="Bold" TextAlignment="Center" HorizontalAlignment="Center" />
                                 </WrapPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
                 </Grid>
-                <Grid Margin="20 20 20 0">
-                    <Button HorizontalAlignment="Left" Click="Button_Send">Отправить</Button>
+                <Grid Margin="20 0 20 0"  >
+                    <Button HorizontalAlignment="Left"  VerticalAlignment="Bottom" Click="Button_Send" >Отправить</Button>
                     <Button HorizontalAlignment="Right" Click="Button_All_Categories" Style="{StaticResource MaterialDesignFlatButton}">Все Категории</Button>
                 </Grid>
             </StackPanel>

@@ -12,6 +12,7 @@
         Title="Мой Кошелёк" Height="450" Width="800"
         Loaded="Window_Loaded" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen">
 
+
     <Grid Background="#ffdadada">
 
         <Border MinWidth="700" Margin="5" Background="White" VerticalAlignment="Center" Padding="20" MaxWidth="600" CornerRadius="20">
@@ -25,12 +26,9 @@
                     <Button Margin="10 0 0 20" Content="Статистика доходов" HorizontalAlignment="Right" Click="Go_to_StatisticIncome"/>
                 </Grid>
                 <Grid>
-                    <Button x:Name="byDayButton" Margin="10 0 0 0" Content="День" HorizontalAlignment="Left"  Style="{StaticResource MaterialDesignRaisedButton}" Width="90" Click="Button_Click_By_Day"
-    materialDesign:ButtonProgressAssist.Value="-1"
-    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
-    materialDesign:ButtonProgressAssist.IsIndeterminate="True" />
-                    <Button HorizontalAlignment="Left" Margin="110 0 0 0"  Style="{StaticResource MaterialDesignFlatButton}"  Width="90" Click="Button_Click_By_Month">Месяц</Button>
-                    <Button  Margin="210 0 0 0" Content="Год" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignFlatButton}"  Width="90" Click="Button_Click_By_Year"/>
+                    <Button x:Name="byDayButton" Margin="10 0 0 0" Content="День" HorizontalAlignment="Left"  Width="90" Click="Button_Click_By_Day"/>
+                    <Button x:Name="byMonthButton" HorizontalAlignment="Left" Margin="110 0 0 0"    Width="90" Click="Button_Click_By_Month" >Месяц</Button>
+                    <Button x:Name="byYearButton" Margin="210 0 0 0" Content="Год" HorizontalAlignment="Left"   Width="90" Click="Button_Click_By_Year"  />
 
                     <ComboBox x:Name="comboBoxForCategories" Cursor="Hand" SelectionChanged="comboBoxForCategories_SelectionChanged" Margin="0,0,60,0" HorizontalAlignment="Right" Width="139" materialDesign:HintAssist.Hint="Выберите категорию" RenderTransformOrigin="0.489,0.44" >
                         <ComboBox.ItemTemplate>

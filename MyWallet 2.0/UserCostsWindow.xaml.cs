@@ -127,8 +127,10 @@ namespace MyWallet_2._0
                 listOfUsers.ItemsSource = total;
 
 
-                List<Category> categories = context.Categories.ToList();
-                listOfCategories.ItemsSource = categories.Take(10);
+                List<Category> categories = context.Categories
+                    .Include(c=>c.Image)
+                    .ToList();
+                listOfCategories.ItemsSource = categories;                     //categories.Take(10);
 
                 List<UserSpend> userSpends = context.UserSpends
                .Include(c => c.Category)
@@ -143,7 +145,9 @@ namespace MyWallet_2._0
 
         private void Button_All_Categories(object sender, RoutedEventArgs e)
         {
-
+            AllCategoriesWindow allCategories = new AllCategoriesWindow();
+            allCategories.Show();
+            Hide();
         }
 
 

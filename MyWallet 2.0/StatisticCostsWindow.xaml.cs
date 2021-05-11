@@ -44,7 +44,9 @@ namespace MyWallet_2._0
 
         private void Go_to_StatisticIncome(object sender, RoutedEventArgs e)
         {
-
+            StatisticIncomesWindow statisticIncomes = new StatisticIncomesWindow();
+            statisticIncomes.Show();
+            Hide();
         }
 
         private void comboBoxForCategories_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -84,6 +86,10 @@ namespace MyWallet_2._0
             }
             
             new Sorting().SortDescAmount(historyByDate);
+
+            byDayButton.Background = Brushes.MediumPurple;
+            byMonthButton.Background = Brushes.LightSkyBlue;
+            byYearButton.Background = Brushes.LightSkyBlue;
         }
 
         private void Button_Click_By_Day(object sender, RoutedEventArgs e)
@@ -91,7 +97,12 @@ namespace MyWallet_2._0
             historyByDate.Items.Clear();
             new StatisticsByDay().ByDay(historyByDate);
             new Sorting().SortDescAmount(historyByDate);
-            
+
+            byDayButton.Background = Brushes.MediumPurple;
+            byMonthButton.Background = Brushes.LightSkyBlue;
+            byYearButton.Background = Brushes.LightSkyBlue;
+
+
         }
 
         private void Button_Click_By_Month(object sender, RoutedEventArgs e)
@@ -100,7 +111,9 @@ namespace MyWallet_2._0
             new StatisticsByDay().ByMonth(historyByDate);
             new Sorting().SortDescAmount(historyByDate);
 
-
+            byDayButton.Background = Brushes.LightSkyBlue;
+            byMonthButton.Background = Brushes.MediumPurple;
+            byYearButton.Background = Brushes.LightSkyBlue;
 
         }
 
@@ -109,7 +122,12 @@ namespace MyWallet_2._0
             historyByDate.Items.Clear();
             new StatisticsByDay().ByYear(historyByDate);
             new Sorting().SortDescAmount(historyByDate);
+
+            byDayButton.Background = Brushes.LightSkyBlue;
+            byMonthButton.Background = Brushes.LightSkyBlue;
+            byYearButton.Background = Brushes.MediumPurple;
         }
+
     }
 
 

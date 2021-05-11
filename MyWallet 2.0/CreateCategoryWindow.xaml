@@ -1,0 +1,46 @@
+﻿<Window x:Class="MyWallet_2._0.CreateCategoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyWallet_2._0"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Мой Кошелёк" Height="600" Width="800"
+        Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+    <Grid Background="#ffdadada">
+        <Border MinWidth="400" Margin="15" Background="White" VerticalAlignment="Center" Padding="30" MaxWidth="550" CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
+            </Border.Effect>
+            <StackPanel>
+                <Grid Margin="10 0 10 5">
+                    <TextBox x:Name="textBoxCategory" Padding="10" TextAlignment="Left" FontWeight="Bold" materialDesign:HintAssist.Hint="Введите название " Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <Button Click="Go_To_Back" Style="{StaticResource MaterialDesignFlatButton}" Content="Отмена" HorizontalAlignment="Center" Margin="200 0 0 0"/>
+                    <Button x:Name="createBtn" Content="Создать" Click="createBtn_Click" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedButton}"
+    materialDesign:ButtonProgressAssist.Value="-1"
+    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+    materialDesign:ButtonProgressAssist.IsIndeterminate="True"/>
+                </Grid>
+
+                <Grid>
+                    <ListView x:Name="listOfIcons"   HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="12"   MinHeight="200" MaxHeight="250" MaxWidth="600" >
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="6" Rows="13"  />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate  >
+                            <DataTemplate  >
+                                <WrapPanel  Width="60">
+                                    <Image Source="{Binding ImagePuth}" Width="35" Height="35" HorizontalAlignment="Center"/>
+                                </WrapPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
+    

@@ -13,7 +13,7 @@ namespace MyWallet_2._0.Models
 
         private string categoryName;
 
-
+        private int imageId;
 
         public string CategoryName
         {
@@ -21,13 +21,22 @@ namespace MyWallet_2._0.Models
             set { categoryName = value; }
         }
 
+        public int ImageId
+        {
+            get { return imageId; }
+            set { imageId = value; }
+        }
+
+        public virtual Image Image { get; set; }
+
 
         public Category() { }
 
 
-        public Category(string categoryName)
+        public Category(string categoryName, int imageId)
         {
             this.categoryName = categoryName;
+            this.imageId = imageId;
         }
 
         public override string ToString()

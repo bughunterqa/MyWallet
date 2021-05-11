@@ -17,6 +17,21 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -154,20 +169,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AllCategoriesWindow.xaml.cs">
+      <DependentUpon>AllCategoriesWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ApplicationContext.cs" />
     <Compile Include="AuthWindow.xaml.cs">
       <DependentUpon>AuthWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreateCategoryWindow.xaml.cs">
+      <DependentUpon>CreateCategoryWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DB.cs" />
     <Compile Include="Helpers\Sorting.cs" />
     <Compile Include="Helpers\StatisticsByDay.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Image.cs" />
     <Compile Include="Models\IncomeCategory.cs" />
     <Compile Include="Models\Total.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserIncome.cs" />
     <Compile Include="StatisticCostsWindow.xaml.cs">
       <DependentUpon>StatisticCostsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StatisticIncomesWindow.xaml.cs">
+      <DependentUpon>StatisticIncomesWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserBillWindow.xaml.cs">
       <DependentUpon>UserBillWindow.xaml</DependentUpon>
@@ -185,7 +210,15 @@
     <Compile Include="Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>
+    <Page Include="AllCategoriesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AuthWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateCategoryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -202,6 +235,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="StatisticCostsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StatisticIncomesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -256,7 +293,109 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\iconfinder__gift_1679564.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\iconfinder_039_026_cat_black_witch_halloween_3792014.png" />
+    <Resource Include="images\iconfinder_13_2388604.png" />
+    <Resource Include="images\iconfinder_14_5675220.png" />
+    <Resource Include="images\iconfinder_166_Heart_Love_Like_Twitter_5172567.png" />
+    <Resource Include="images\iconfinder_30_5027824.png" />
+    <Resource Include="images\iconfinder_advantage_payment_way_1034362.png" />
+    <Resource Include="images\iconfinder_Alcohol_addiction_wine_3122412.png" />
+    <Resource Include="images\iconfinder_Ambulance_6049175.png" />
+    <Resource Include="images\iconfinder_Artboard_12_6045696.png" />
+    <Resource Include="images\iconfinder_a_5_2578124.png" />
+    <Resource Include="images\iconfinder_Baby-13_2363115.png" />
+    <Resource Include="images\iconfinder_Backpack_2998135.png" />
+    <Resource Include="images\iconfinder_bag_icons-17_1075429.png" />
+    <Resource Include="images\iconfinder_Ballet_flat_3023248.png" />
+    <Resource Include="images\iconfinder_BANK-finance-finance_and_business-banking-columns-buildings_5452454.png" />
+    <Resource Include="images\iconfinder_basketball_1271432.png" />
+    <Resource Include="images\iconfinder_Bike_751114.png" />
+    <Resource Include="images\iconfinder_bonfire_2799196.png" />
+    <Resource Include="images\iconfinder_BT_c3tool_905663.png" />
+    <Resource Include="images\iconfinder_bus-vehicle-transport-school_2824446.png" />
+    <Resource Include="images\iconfinder_business-work_7_2377640.png" />
+    <Resource Include="images\iconfinder_business-work_8_2377639.png" />
+    <Resource Include="images\iconfinder_Car-Accessories_20_2178870.png" />
+    <Resource Include="images\iconfinder_Car-Accessories_8_2178886.png" />
+    <Resource Include="images\iconfinder_clothing_accesories_clothes_fabric-09_498945.png" />
+    <Resource Include="images\iconfinder_clothing_accesories_clothes_fabric-11_498948.png" />
+    <Resource Include="images\iconfinder_clothing_accesories_clothes_fabric-17_498971.png" />
+    <Resource Include="images\iconfinder_clothing_accesories_clothes_fabric-21_498966.png" />
+    <Resource Include="images\iconfinder_clothing_accesories_clothes_fabric-26_498962.png" />
+    <Resource Include="images\iconfinder_clothing_accesories_clothes_fabric-32_498957.png" />
+    <Resource Include="images\iconfinder_drill_3553084.png" />
+    <Resource Include="images\iconfinder_Eye_shadow_7071946.png" />
+    <Resource Include="images\iconfinder_female_4879904.png" />
+    <Resource Include="images\iconfinder_Finance_saving_1889200.png" />
+    <Resource Include="images\iconfinder_Fishing1_2316005.png" />
+    <Resource Include="images\iconfinder_folder-music_299034.png" />
+    <Resource Include="images\iconfinder_Food_C202_2427848.png" />
+    <Resource Include="images\iconfinder_Food_C206_2427852.png" />
+    <Resource Include="images\iconfinder_General_Office_31_2530820.png" />
+    <Resource Include="images\iconfinder_global_money_1312840.png" />
+    <Resource Include="images\iconfinder_go-home_118770.png" />
+    <Resource Include="images\iconfinder_Hairdresser_2_753944.png" />
+    <Resource Include="images\iconfinder_handshake_4177614.png" />
+    <Resource Include="images\iconfinder_hat_19_2875617.png" />
+    <Resource Include="images\iconfinder_hierarchy_job_seeker_employee_unemployee_work_2620519.png" />
+    <Resource Include="images\iconfinder_Hunting1_2315994.png" />
+    <Resource Include="images\iconfinder_icon-game-controller-b_211668.png" />
+    <Resource Include="images\iconfinder_internet-explorer_317737.png" />
+    <Resource Include="images\iconfinder_Internet_Line-18_1587497.png" />
+    <Resource Include="images\iconfinder_location_job_seeker_employee_unemployee_work_2620495.png" />
+    <Resource Include="images\iconfinder_medicine_1_6673748.png" />
+    <Resource Include="images\iconfinder_medic_6673745.png" />
+    <Resource Include="images\iconfinder_mobile_website_1613766.png" />
+    <Resource Include="images\iconfinder_money_dollars_3890943.png" />
+    <Resource Include="images\iconfinder_nike-dunk_416386.png" />
+    <Resource Include="images\iconfinder_Pet_Care1_2315988.png" />
+    <Resource Include="images\iconfinder_phone_1807538.png" />
+    <Resource Include="images\iconfinder_Picture17_3289570.png" />
+    <Resource Include="images\iconfinder_Picture6_3289573.png" />
+    <Resource Include="images\iconfinder_Piggy_Bank_7007517.png" />
+    <Resource Include="images\iconfinder_Pipe_smoke_st_patrick_day_3017868.png" />
+    <Resource Include="images\iconfinder_pocket-knife_2799189.png" />
+    <Resource Include="images\iconfinder_resolutions-16_897226.png" />
+    <Resource Include="images\iconfinder_resolutions-18_897234.png" />
+    <Resource Include="images\iconfinder_resolutions-25_897228.png" />
+    <Resource Include="images\iconfinder_shopping_cart_465074.png" />
+    <Resource Include="images\iconfinder_Soccer_2138356.png" />
+    <Resource Include="images\iconfinder_Streamline-90_185110.png" />
+    <Resource Include="images\iconfinder_TAXI-cab-transportation-automobile-car-vehicle_5452472.png" />
+    <Resource Include="images\iconfinder_Travel-Filled-13_3671989.png" />
+    <Resource Include="images\iconfinder_travel_journey-06_1061154.png" />
+    <Resource Include="images\iconfinder_travel_journey-09_1061152.png" />
+    <Resource Include="images\iconfinder_wine_1936919.png" />
+    <Resource Include="images\iconfinder_wrench_416405.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\iconfinder_Rounded_-_High_Ultra_Colour11_-_Wallet_2250033.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\iconfinder_Close_1891023.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\iconfinder_Cancel_1493282.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\iconfinder_pencil_3688460.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

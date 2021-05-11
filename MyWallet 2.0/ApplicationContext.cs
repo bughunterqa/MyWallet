@@ -22,6 +22,8 @@ namespace MyWallet_2._0
 
         public DbSet<IncomeCategory> IncomeCategories { get; set; }
 
+        public DbSet<Image> Images { get; set; }
+
         public ApplicationContext() : base("DefaultConnection") { }
 
 
